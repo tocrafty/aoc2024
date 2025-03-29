@@ -14,15 +14,27 @@ char c = Parser $ get >>= parseChar where
     parseChar (x:xs) | x == c    = put xs >> return x
                      | otherwise = empty
 
-digit :: Num a =>  Parser a
+alpha :: Parser Char
+alpha = Parser $ get >>= parseAlpha where
+    parseAlpha [] = empty
+    parseAlpha (x:xs) | isAlpha x = put xs >> return x
+                      | otherwise = empty
+
+digit :: Num a => Parser a
 digit = Parser $ get >>= parseDigit where
     parseDigit [] = empty
     parseDigit (x:xs) | isDigit x = put xs >> return (fromInteger $ read [x])
                       | otherwise = empty
 
 num :: Num a => Parser a
-num = acc <$> some digit where
+num = pNum <|> nNum
+
+pNum :: Num a => Parser a
+pNum = acc <$> some digit where
     acc = foldl' ((+) . (* 10)) 0
+
+nNum :: Num a => Parser a
+nNum = (0-) <$> (char '-' *> pNum)
 
 eof :: Parser ()
 eof = Parser $ get >>= \case [] -> return ()

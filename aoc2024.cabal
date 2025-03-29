@@ -51,7 +51,7 @@ extra-doc-files:    CHANGELOG.md
 -- extra-source-files:
 
 common warnings
-    ghc-options: -Wall
+    ghc-options: -Wall -O2
 
 library
     -- Import common warning flags.
@@ -70,7 +70,7 @@ library
 
     -- Other library packages from which modules are imported.
     build-depends:
-        base ^>=4.20.0.0,
+        base,
         mtl
 
     -- Directories containing source files.
@@ -94,7 +94,7 @@ executable aoc2024
 
     -- Other library packages from which modules are imported.
     build-depends:
-        base ^>=4.20.0.0,
+        base,
         aoc2024
 
     -- Directories containing source files.
@@ -107,7 +107,7 @@ executable day1
     import: warnings
     main-is: Day1.hs
     build-depends:
-        base ^>=4.20.0.0,
+        base,
         aoc2024
     hs-source-dirs: exe/Day1
     default-language: GHC2024
@@ -116,7 +116,7 @@ executable day2
     import: warnings
     main-is: Day2.hs
     build-depends:
-        base ^>=4.20.0.0,
+        base,
         aoc2024
     hs-source-dirs: exe/Day2
     default-language: GHC2024
@@ -125,7 +125,7 @@ executable day3
     import: warnings
     main-is: Day3.hs
     build-depends:
-        base ^>=4.20.0.0,
+        base,
         aoc2024,
         mtl
     hs-source-dirs: exe/Day3
@@ -135,7 +135,7 @@ executable day4
     import: warnings
     main-is: Day4.hs
     build-depends:
-        base ^>=4.20.0.0,
+        base,
         aoc2024,
         mtl,
         array
@@ -146,12 +146,226 @@ executable day5
     import: warnings
     main-is: Day5.hs
     build-depends:
-        base ^>=4.20.0.0,
+        base,
         aoc2024,
         mtl,
         array,
-        unordered-containers
+        unordered-containers,
+        deepseq
     hs-source-dirs: exe/Day5
     default-language: GHC2024
 
+executable day6
+    import: warnings
+    main-is: Day6.hs
+    build-depends:
+        base,
+        aoc2024,
+        mtl,
+        array,
+        unordered-containers,
+        deepseq
+    hs-source-dirs: exe/Day6
+    default-language: GHC2024
 
+executable day7
+    import: warnings
+    main-is: Day7.hs
+    build-depends:
+        base,
+        aoc2024,
+        mtl,
+        array,
+        unordered-containers,
+        deepseq,
+        ghc
+    hs-source-dirs: exe/Day7
+    default-language: GHC2024
+
+executable day8
+    import: warnings
+    main-is: Day8.hs
+    build-depends:
+        base,
+        aoc2024,
+        mtl,
+        array,
+        unordered-containers,
+        deepseq,
+        ghc
+    hs-source-dirs: exe/Day8
+    default-language: GHC2024
+
+executable day9
+    import: warnings
+    main-is: Day9.hs
+    build-depends:
+        base,
+        aoc2024,
+        mtl,
+        array,
+        unordered-containers,
+        deepseq,
+        ghc,
+        vector
+    hs-source-dirs: exe/Day9
+    default-language: GHC2024
+
+executable day10
+    import: warnings
+    main-is: Day10.hs
+    build-depends:
+        base,
+        aoc2024,
+        mtl,
+        array,
+        unordered-containers,
+        deepseq,
+        ghc,
+        vector,
+        hashable
+    hs-source-dirs: exe/Day10
+    default-language: GHC2024
+
+executable day11
+    import: warnings
+    main-is: Day11.hs
+    build-depends:
+        base,
+        aoc2024,
+        mtl,
+        array,
+        unordered-containers,
+        deepseq,
+        ghc,
+        vector,
+        hashable,
+        hashtables
+    hs-source-dirs: exe/Day11
+    default-language: GHC2024
+
+executable day12
+    import: warnings
+    main-is: Day12.hs
+    build-depends:
+        base,
+        aoc2024,
+        mtl,
+        array,
+        unordered-containers,
+        deepseq,
+        ghc,
+        vector,
+        hashable,
+        hashtables
+    hs-source-dirs: exe/Day12
+    default-language: GHC2024
+
+executable day13
+    import: warnings
+    main-is: Day13.hs
+    build-depends:
+        base,
+        aoc2024,
+        mtl,
+        array,
+        unordered-containers,
+        deepseq,
+        ghc,
+        vector,
+        hashable,
+        hashtables
+    hs-source-dirs: exe/Day13
+    default-language: GHC2024
+
+executable day14
+    import: warnings
+    main-is: Day14.hs
+    build-depends:
+        base,
+        aoc2024,
+        mtl,
+        array,
+        unordered-containers,
+        deepseq,
+        ghc,
+        vector,
+        hashable,
+        hashtables
+    hs-source-dirs: exe/Day14
+    default-language: GHC2024
+
+executable day15
+    import: warnings
+    main-is: Day15.hs
+    build-depends:
+        containers,
+        base,
+        aoc2024,
+        mtl,
+        array,
+        unordered-containers,
+        deepseq,
+        ghc,
+        vector,
+        hashable,
+        hashtables
+    hs-source-dirs: exe/Day15
+    default-language: GHC2024
+
+executable day16
+    import: warnings
+    main-is: Day16.hs
+    build-depends:
+        containers,
+        base,
+        aoc2024,
+        mtl,
+        array,
+        unordered-containers,
+        deepseq,
+        ghc,
+        vector,
+        hashable,
+        hashtables,
+        lens
+    hs-source-dirs: exe/Day16
+    default-language: GHC2024
+
+executable day17
+    import: warnings
+    main-is: Day17.hs
+    build-depends:
+        containers,
+        base,
+        aoc2024,
+        mtl,
+        array,
+        unordered-containers,
+        deepseq,
+        ghc,
+        vector,
+        hashable,
+        hashtables,
+        lens
+    hs-source-dirs: exe/Day17
+    default-language: GHC2024
+
+executable day18
+    import: warnings
+    main-is: Day18.hs
+    build-depends:
+        containers,
+        base,
+        aoc2024,
+        mtl,
+        array,
+        unordered-containers,
+        deepseq,
+        ghc,
+        vector,
+        hashable,
+        hashtables,
+        lens
+    hs-source-dirs: exe/Day18
+    default-language: GHC2024
