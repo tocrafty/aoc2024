@@ -70,7 +70,7 @@ library
 
     -- Other library packages from which modules are imported.
     build-depends:
-        base ^>=4.20.0.0,
+        base,
         mtl
 
     -- Directories containing source files.
@@ -94,7 +94,7 @@ executable aoc2024
 
     -- Other library packages from which modules are imported.
     build-depends:
-        base ^>=4.20.0.0,
+        base,
         aoc2024
 
     -- Directories containing source files.
@@ -107,7 +107,7 @@ executable day1
     import: warnings
     main-is: Day1.hs
     build-depends:
-        base ^>=4.20.0.0,
+        base,
         aoc2024
     hs-source-dirs: exe/Day1
     default-language: GHC2024
@@ -116,7 +116,7 @@ executable day2
     import: warnings
     main-is: Day2.hs
     build-depends:
-        base ^>=4.20.0.0,
+        base,
         aoc2024
     hs-source-dirs: exe/Day2
     default-language: GHC2024
@@ -125,7 +125,7 @@ executable day3
     import: warnings
     main-is: Day3.hs
     build-depends:
-        base ^>=4.20.0.0,
+        base,
         aoc2024,
         mtl
     hs-source-dirs: exe/Day3
@@ -135,7 +135,7 @@ executable day4
     import: warnings
     main-is: Day4.hs
     build-depends:
-        base ^>=4.20.0.0,
+        base,
         aoc2024,
         mtl,
         array
@@ -146,12 +146,24 @@ executable day5
     import: warnings
     main-is: Day5.hs
     build-depends:
-        base ^>=4.20.0.0,
+        base,
         aoc2024,
         mtl,
         array,
-        unordered-containers
+        unordered-containers,
+        deepseq
     hs-source-dirs: exe/Day5
     default-language: GHC2024
 
-
+executable day6
+    import: warnings
+    main-is: Day6.hs
+    build-depends:
+        base,
+        aoc2024,
+        mtl,
+        array,
+        unordered-containers,
+        deepseq
+    hs-source-dirs: exe/Day6
+    default-language: GHC2024

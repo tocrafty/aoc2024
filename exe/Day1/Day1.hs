@@ -13,14 +13,13 @@ main = do
              $ fmap sort
              . transpose
              $ nss
-    let columns2 = concat $ fmap tail nss
+    let columns2 = concatMap tail nss
     putStrLn $ ("part-2: " ++)
              $ show $ sum
-             $ fmap (\(a,b) -> a*b)
-             $ fmap (\(x:_) -> (x, toInteger
+             $ fmap (uncurry (*) . (\(x:_) -> (x, toInteger
                                  $ length
                                  $ filter (x ==) columns2)
-                    ) nss
+                    )) nss
 
 transpose :: [[a]] -> [[a]]
 transpose ([] : _) = []
