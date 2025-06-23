@@ -167,3 +167,17 @@ executable day6
         deepseq
     hs-source-dirs: exe/Day6
     default-language: GHC2024
+
+executable day7
+    import: warnings
+    main-is: Day7.hs
+    build-depends:
+        base,
+        aoc2024,
+        mtl,
+        array,
+        unordered-containers,
+        deepseq,
+        ghc
+    hs-source-dirs: exe/Day7
+    default-language: GHC2024
