@@ -7,11 +7,10 @@ import GHC.Utils.Misc
 
 main :: IO ()
 main = readFile "./exe/Day7/input" >>= print . show
-     . ( fmap ( sum
-              . (fmap fstOf3)
-              . (filter (uncurry3 isExpEqAny))
-              . (fmap (third3 allCombinations))
-              )
+     . (fmap (sum
+             . (fmap fstOf3)
+             . (filter (uncurry3 isExpEqAny))
+             . (fmap (third3 allCombinations)))
        . evalStateT (runParser parseInput))
 
 isExpEqAny :: Integer -> Integer -> [[Integer -> Integer]] -> Bool
