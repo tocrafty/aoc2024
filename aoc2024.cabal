@@ -195,3 +195,18 @@ executable day8
         ghc
     hs-source-dirs: exe/Day8
     default-language: GHC2024
+
+executable day9
+    import: warnings
+    main-is: Day9.hs
+    build-depends:
+        base,
+        aoc2024,
+        mtl,
+        array,
+        unordered-containers,
+        deepseq,
+        ghc,
+        vector
+    hs-source-dirs: exe/Day9
+    default-language: GHC2024

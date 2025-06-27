@@ -20,7 +20,7 @@ alpha = Parser $ get >>= parseAlpha where
     parseAlpha (x:xs) | isAlpha x = put xs >> return x
                       | otherwise = empty
 
-digit :: Num a =>  Parser a
+digit :: Num a => Parser a
 digit = Parser $ get >>= parseDigit where
     parseDigit [] = empty
     parseDigit (x:xs) | isDigit x = put xs >> return (fromInteger $ read [x])
