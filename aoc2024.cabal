@@ -222,6 +222,7 @@ executable day10
         unordered-containers,
         deepseq,
         ghc,
-        vector
+        vector,
+        hashable
     hs-source-dirs: exe/Day10
     default-language: GHC2024
