@@ -260,3 +260,20 @@ executable day12
         hashtables
     hs-source-dirs: exe/Day12
     default-language: GHC2024
+
+executable day13
+    import: warnings
+    main-is: Day13.hs
+    build-depends:
+        base,
+        aoc2024,
+        mtl,
+        array,
+        unordered-containers,
+        deepseq,
+        ghc,
+        vector,
+        hashable,
+        hashtables
+    hs-source-dirs: exe/Day13
+    default-language: GHC2024
