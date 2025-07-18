@@ -27,8 +27,14 @@ digit = Parser $ get >>= parseDigit where
                       | otherwise = empty
 
 num :: Num a => Parser a
-num = acc <$> some digit where
+num = pNum <|> nNum
+
+pNum :: Num a => Parser a
+pNum = acc <$> some digit where
     acc = foldl' ((+) . (* 10)) 0
+
+nNum :: Num a => Parser a
+nNum = (0-) <$> (char '-' *> pNum)
 
 eof :: Parser ()
 eof = Parser $ get >>= \case [] -> return ()
