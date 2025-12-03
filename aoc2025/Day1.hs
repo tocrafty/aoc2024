@@ -8,19 +8,27 @@ main :: IO ()
 main = do
   contents <- readFile "aoc2025/input"
   let dials = fromJust $ evalStateT (runParser parseDials) contents
-  print $ length $ filter (== 0) $ evalState (processes dials) 50
+  print $ length $ filter id $ evalState (processes dialEndAt0 dials) 50
+  print $ sum $ evalState (processes dialThrough0 dials) 50
 
 data Dial = Lft Int | Rht Int deriving Show
 
-processes :: [Dial] -> State Int [Int]
-processes = traverse process
+processes :: (Int -> Dial -> (Int, a)) -> [Dial] -> State Int [a]
+processes dialOnce = traverse process
  where
-  process :: Dial -> State Int Int
   process d = do
     n <- get
-    case d of
-      (Lft d) -> let n' = (n-d) `mod` 100 in put n' >> return n'
-      (Rht d) -> let n' = (n+d) `mod` 100 in put n' >> return n'
+    let (n', a) = dialOnce n d
+    put n'
+    return a
+
+dialEndAt0 :: Int -> Dial -> (Int, Bool)
+dialEndAt0 n (Lft d) = let n' = (n-d) `mod` 100 in (n', n' == 0)
+dialEndAt0 n (Rht d) = let n' = (n+d) `mod` 100 in (n', n' == 0)
+
+dialThrough0 :: Int -> Dial -> (Int, Int)
+dialThrough0 n (Lft d) = let (_, div') = dialThrough0 ((100-n) `mod` 100) (Rht d) in ((n-d) `mod` 100, div')
+dialThrough0 n (Rht d) = ((n+d) `mod` 100, (n+d) `div` 100)
 
 parseDials :: Parser [Dial]
 parseDials = do
