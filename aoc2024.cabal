@@ -407,3 +407,23 @@ executable 25day2
         lens
     hs-source-dirs: aoc2025/
     default-language: GHC2024
+
+executable 25day3
+    import: warnings
+    main-is: Day3.hs
+    build-depends:
+        containers,
+        base,
+        aoc2024,
+        mtl,
+        array,
+        unordered-containers,
+        deepseq,
+        ghc,
+        vector,
+        hashable,
+        hashtables,
+        lens
+    hs-source-dirs: aoc2025/
+    default-language: GHC2024
+
