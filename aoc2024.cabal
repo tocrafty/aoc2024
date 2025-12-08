@@ -446,6 +446,25 @@ executable 25day4
     hs-source-dirs: aoc2025/
     default-language: GHC2024
 
+executable 25day5
+    import: warnings
+    main-is: Day5.hs
+    build-depends:
+        containers,
+        base,
+        aoc2024,
+        mtl,
+        array,
+        unordered-containers,
+        deepseq,
+        ghc,
+        vector,
+        hashable,
+        hashtables,
+        lens
+    hs-source-dirs: aoc2025/
+    default-language: GHC2024
+
 executable 15day1
     import: warnings
     main-is: Day1.hs
