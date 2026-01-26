@@ -26,6 +26,12 @@ digit = Parser $ get >>= parseDigit where
     parseDigit (x:xs) | isDigit x = put xs >> return (fromInteger $ read [x])
                       | otherwise = empty
 
+expectChar :: (Char -> Bool) -> Parser Char
+expectChar f = Parser $ get >>= parseExpect where
+    parseExpect [] = empty
+    parseExpect (x:xs) | f x       = put xs >> return x
+                       | otherwise = empty
+
 num :: Num a => Parser a
 num = pNum <|> nNum
 

@@ -480,7 +480,8 @@ executable 25day6
         vector,
         hashable,
         hashtables,
-        lens
+        lens,
+        split
     hs-source-dirs: aoc2025/
     default-language: GHC2024
 
