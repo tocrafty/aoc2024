@@ -4,14 +4,23 @@ import Control.Monad.State
 import Parser
 import Control.Applicative
 import Data.Maybe
+import Data.Function
 
 main :: IO ()
 main = do
   contents <- readFile "aoc2025/input"
   let grid = fromJust $ evalStateT (runParser paserInput) contents
   print $ evalState (scatters $ drop 1 grid) (head grid)
+  print $ sum $ (\case
+    (Beam n) -> n
+    _ -> 0
+    ) <$> execState (scatters $ drop 1 grid) (head grid)
 
-data Cell = Beam | Splitter | Empty deriving (Eq, Show)
+data Cell = Beam Int | Splitter | Empty deriving (Eq, Show)
+
+isBeam :: Cell -> Bool
+isBeam (Beam _) = True
+isBeam _ = False
 
 type Grid = [[Cell]]
 
@@ -22,10 +31,10 @@ paserInput = do
   return $ fmap (fmap parseCell) rows
  where
   parseCell :: Char -> Cell
-  parseCell '|' = Beam
+  parseCell '|' = Beam 1
   parseCell '^' = Splitter
   parseCell '.' = Empty
-  parseCell 'S' = Beam
+  parseCell 'S' = Beam 1
   parseCell c = error $ "unexpected cell: " ++ [c]
 
 scatters :: [[Cell]] -> State [Cell] Int
@@ -41,17 +50,19 @@ scatter :: [Cell] -> [Cell] -> (Int, [Cell])
 scatter beams cells = let
   c3 = uncurry scatterCell <$> zip beams cells
  in
-  (length $ filter (== (Beam, Empty, Beam)) c3, 
+  (length $ filter (\case
+    (Beam _, Empty, Beam _) -> True
+    _ -> False
+  ) c3,
   mergeC3 <$> zip3 (thd3 <$> (Empty, Empty, Empty) : c3) (snd3 <$> c3) (fst3 <$> drop 1 c3 ++ [(Empty, Empty, Empty)]))
  where
   mergeC3 :: (Cell, Cell, Cell) -> Cell
-  mergeC3 (Beam, _, _) = Beam
-  mergeC3 (_, Beam, _) = Beam
-  mergeC3 (_, _, Beam) = Beam
-  mergeC3 _ = Empty
+  mergeC3 (c1, c2, c3) = filter isBeam [c1, c2, c3] & \bs -> case bs of
+    [] -> Empty
+    _ -> Beam $ sum [n | Beam n <- bs]
   scatterCell :: Cell -> Cell -> (Cell, Cell, Cell)
-  scatterCell Beam Splitter = (Beam, Empty, Beam)
-  scatterCell Beam Empty = (Empty, Beam, Empty)
+  scatterCell (Beam n) Splitter = (Beam n, Empty, Beam n)
+  scatterCell (Beam n) Empty = (Empty, Beam n, Empty)
   scatterCell _ _ = (Empty, Empty, Empty)
   fst3 (a,_,_) = a
   snd3 (_,b,_) = b
