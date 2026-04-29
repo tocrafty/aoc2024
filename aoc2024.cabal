@@ -60,7 +60,8 @@ library
     -- Modules exported by the library.
     exposed-modules:
         MyLib,
-        Parser
+        Parser,
+        Heap
 
     -- Modules included in this library but not exported.
     -- other-modules:
@@ -70,6 +71,8 @@ library
 
     -- Other library packages from which modules are imported.
     build-depends:
+        primitive ^>=0.9.1.0,
+        vector ^>=0.13.2.0,
         base,
         mtl
 
