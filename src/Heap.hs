@@ -1,7 +1,9 @@
 module Heap (
+  Heap,
   newHeap,
   push,
   pop,
+  Heap.length,
 ) where
 
 import Control.Monad (when)
@@ -65,3 +67,6 @@ pop h = do
           when (j /= i) $ MV.swap v i j >> down j
     down 0
     Just <$> MV.read v (sz - 1)
+
+length :: (PrimMonad m) => Heap (MV.PrimState m) a -> m Int
+length = readMutVar . size
